@@ -1,4 +1,11 @@
 let deferredPrompt;
+
+
+if(!window.Promise){
+	console.log('Promise Added through pulyfils');
+	window.Promise = Promise;
+}
+
 if('serviceWorker' in navigator){
 	navigator.serviceWorker
 	.register('/sw.js')
@@ -16,7 +23,7 @@ window.addEvenetListener('beforeinstallprompt',(event)=>{
 
 function showPopup(){
 	if(deferredPrompt){
-		
+
 		deferredPrompt.prompt();
 
 		deferredPrompt.userChoice.then(choiseResult=>{
